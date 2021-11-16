@@ -6,71 +6,62 @@ namespace Tests;
 
 use GildedRose\GildedRose;
 use GildedRose\Item;
-use GildedRose\Models\AgedBrie;
-use GildedRose\Models\BackStagePass;
-use GildedRose\Models\ItemInterface;
-use GildedRose\Models\StandardItem;
-use GildedRose\Models\Sulfuras;
+use GildedRose\Models\Products\AgedBrie;
+use GildedRose\Models\Products\BackStagePass;
+use GildedRose\Models\Products\Conjured;
+use GildedRose\Models\Products\StandardItem;
+use GildedRose\Models\Products\Sulfuras;
 use PHPUnit\Framework\TestCase;
 
 class GildedRoseTest extends TestCase
 {
-//    public function testFoo(): void
-//    {
-//        $items = [new Item('foo', 0, 0)];
-//        $gildedRose = new GildedRose($items);
-//        $gildedRose->updateQuality();
-//        $this->assertSame('foo', $items[0]->name);
-//    }
-
     public function updateQualityDataProvider(): array
     {
-        // $name, $sellIn, $expectedSellIn, $quality, $expectedQuality
+        // $type, $item, $expectedSellIn, $expectedQuality
         return [
-            [StandardItem::class, '+5 Dexterity Vest', 10, 9, 20, 19],
-            [StandardItem::class, '+5 Dexterity Vest', 0, -1, 20, 18],
-            [AgedBrie::class, 'Aged Brie', 2, 1, 2, 3],
-            [AgedBrie::class, 'Aged Brie', -2, -3, 2, 4],
-            [StandardItem::class, 'Elixir of the Mongoose', 5, 4, 7, 6],
-            [StandardItem::class, 'Elixir of the Mongoose', -5, -6, 7, 5],
-            [StandardItem::class, 'Elixir of the Mongoose', 5, 4, 80, 50],
-            [Sulfuras::class, 'Sulfuras, Hand of Ragnaros', 2, 2, 80, 80],
-            [Sulfuras::class, 'Sulfuras, Hand of Ragnaros', -2, -2, 80, 80],
-            [Sulfuras::class, 'Sulfuras, Hand of Ragnaros', 2, 2, 20, 20],
-            [Sulfuras::class, 'Sulfuras, Hand of Ragnaros', -2, -2, 20, 20],
-            [BackStagePass::class, 'Backstage passes to a TAFKAL80ETC concert', 15, 14, 20, 21],
-            [BackStagePass::class, 'Backstage passes to a TAFKAL80ETC concert', 0, -1, 20, 0],
-            [BackStagePass::class, 'Backstage passes to a TAFKAL80ETC concert', -10, -11, 50, 0],
-            [BackStagePass::class, 'Backstage passes to a TAFKAL80ETC concert', -10, -11, 150, 0],
-            [BackStagePass::class, 'Backstage passes to a TAFKAL80ETC concert', 10, 9, 48, 50],
-            [BackStagePass::class, 'Backstage passes to a TAFKAL80ETC concert', 10, 9, 49, 50],
-            [BackStagePass::class, 'Backstage passes to a TAFKAL80ETC concert', 5, 4, 49, 50],
-            [BackStagePass::class, 'Backstage passes to a TAFKAL80ETC concert', 5, 4, 47, 50],
+            [StandardItem::class, new Item('+5 Dexterity Vest', 10, 20), 9, 19],
+            [StandardItem::class, new Item('+5 Dexterity Vest', 0, 20), -1, 18],
+            [AgedBrie::class, new Item('Aged Brie', 2, 2), 1, 3],
+            [AgedBrie::class, new Item('Aged Brie', -2, 2), -3, 4],
+            [StandardItem::class, new Item('Elixir of the Mongoose', 5, 7), 4, 6],
+            [StandardItem::class, new Item('Elixir of the Mongoose', -5, 7), -6, 5],
+            [StandardItem::class, new Item('Elixir of the Mongoose', 5, 80), 4, 50],
+            [Sulfuras::class, new Item('Sulfuras, Hand of Ragnaros', 2, 80), 2, 80],
+            [Sulfuras::class, new Item('Sulfuras, Hand of Ragnaros', -2, 80), -2, 80],
+            [Sulfuras::class, new Item('Sulfuras, Hand of Ragnaros', 2, 20), 2, 20],
+            [Sulfuras::class, new Item('Sulfuras, Hand of Ragnaros', -2, 20), -2, 20],
+            [BackStagePass::class, new Item('Backstage passes to a TAFKAL80ETC concert', 15, 20), 14, 21],
+            [BackStagePass::class, new Item('Backstage passes to a TAFKAL80ETC concert', 0, 20), -1, 0],
+            [BackStagePass::class, new Item('Backstage passes to a TAFKAL80ETC concert', -10, 50), -11, 0],
+            [BackStagePass::class, new Item('Backstage passes to a TAFKAL80ETC concert', -10, 150), -11, 0],
+            [BackStagePass::class, new Item('Backstage passes to a TAFKAL80ETC concert', 10, 48), 9, 50],
+            [BackStagePass::class, new Item('Backstage passes to a TAFKAL80ETC concert', 10, 49), 9, 50],
+            [BackStagePass::class, new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49), 4, 50],
+            [BackStagePass::class, new Item('Backstage passes to a TAFKAL80ETC concert', 5, 47), 4, 50],
+            [Conjured::class, new Item('Conjured', 5, 47), 4, 45],
+            [Conjured::class, new Item('Conjured', 5, 80), 4, 50],
+            [Conjured::class, new Item('Conjured', -5, 10), -6, 6],
         ];
     }
 
     /**
      * @dataProvider updateQualityDataProvider
      * @param string $type
-     * @param string $name
-     * @param int $sellIn
+     * @param Item $item
      * @param int $expectedSellIn
-     * @param int $quality
      * @param int $expectedQuality
      */
     public function testUpdateQuality(
         string $type,
-        string $name,
-        int $sellIn,
+        Item $item,
         int $expectedSellIn,
-        int $quality,
         int $expectedQuality
     ): void {
         /** @var array[ItemInterface] $items */
-        $items = [new $type($name, $quality, $sellIn)];
+        $items = [new $type($item)];
         $gildedRose = new GildedRose($items);
         $gildedRose->updateQuality();
-        $this->assertSame($expectedQuality, $items[0]->quality);
-        $this->assertSame($expectedSellIn, $items[0]->sellIn);
+        $this->assertSame($expectedQuality, $items[0]->getQuality());
+        $this->assertSame($expectedSellIn, $items[0]->getSellIn());
     }
 }

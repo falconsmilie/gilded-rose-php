@@ -1,19 +1,18 @@
 <?php
 
-namespace GildedRose\Models;
+namespace GildedRose\Models\Products;
 
-class Conjured extends AbstractItem implements ItemInterface
+class Sulfuras extends AbstractItem
 {
-
     public function updateQuality(): void
     {
-        if ($this->quality > 1) {
-            $this->quality -= 2;
-        }
+        // TODO: Implement updateQuality() method.
+        return;
     }
 
     public function updateSellIn(): void
     {
         // TODO: Implement updateSellIn() method.
+        return;
     }
 }

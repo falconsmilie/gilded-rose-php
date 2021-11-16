@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace GildedRose\Models;
+namespace GildedRose\Models\Products;
 
-class AgedBrie extends AbstractItem implements ItemInterface
+class AgedBrie extends AbstractItem
 {
     public function updateQuality(): void
     {
