@@ -60,7 +60,7 @@ final class GildedRose
                             }
                         }
                     } else {
-                        $item->quality = $item->quality - $item->quality;
+                        $item->quality -= $item->quality;
                     }
                 } else {
                     if ($item->quality < 50) {
