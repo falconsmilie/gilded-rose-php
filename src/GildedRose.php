@@ -26,7 +26,7 @@ final class GildedRose
                     }
                 }
                 // brief says; "The Quality of an item is never more than 50". It doesn't specify which items.
-                if ($item->quality > 50) {
+                if ($item->name != 'Sulfuras, Hand of Ragnaros' && $item->quality > 50) {
                     $item->quality = 50;
                 }
             } else {
