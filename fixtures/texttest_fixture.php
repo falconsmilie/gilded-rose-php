@@ -4,22 +4,22 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
+use GildedRose\Factories\ItemFactory;
 use GildedRose\GildedRose;
 use GildedRose\Item;
 
 echo 'OMGHAI!' . PHP_EOL;
 
 $items = [
-    new Item('+5 Dexterity Vest', 10, 20),
-    new Item('Aged Brie', 2, 0),
-    new Item('Elixir of the Mongoose', 5, 7),
-    new Item('Sulfuras, Hand of Ragnaros', 0, 80),
-    new Item('Sulfuras, Hand of Ragnaros', -1, 80),
-    new Item('Backstage passes to a TAFKAL80ETC concert', 15, 20),
-    new Item('Backstage passes to a TAFKAL80ETC concert', 10, 49),
-    new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49),
-    // this conjured item does not work properly yet
-    new Item('Conjured Mana Cake', 3, 6),
+    ItemFactory::create(new Item(ItemFactory::PLUS_5_DEXTERITY_VEST, 10, 20)),
+    ItemFactory::create(new Item(ItemFactory::AGED_BRIE, 2, 0)),
+    ItemFactory::create(new Item(ItemFactory::ELIXIR_OF_MONGOOSE, 5, 7)),
+    ItemFactory::create(new Item(ItemFactory::SULFURAS, 0, 80)),
+    ItemFactory::create(new Item(ItemFactory::SULFURAS, -1, 80)),
+    ItemFactory::create(new Item(ItemFactory::BACKSTAGE_PASS, 15, 20)),
+    ItemFactory::create(new Item(ItemFactory::BACKSTAGE_PASS, 10, 49)),
+    ItemFactory::create(new Item(ItemFactory::BACKSTAGE_PASS, 5, 49)),
+    ItemFactory::create(new Item(ItemFactory::CONJURED_MANA_CAKE, 3, 6)),
 ];
 
 $app = new GildedRose($items);
@@ -30,7 +30,7 @@ if (count($argv) > 1) {
 }
 
 for ($i = 0; $i < $days; $i++) {
-    echo "-------- day ${i} --------" . PHP_EOL;
+    echo "-------- day $i --------" . PHP_EOL;
     echo 'name, sellIn, quality' . PHP_EOL;
     foreach ($items as $item) {
         echo $item . PHP_EOL;
