@@ -25,6 +25,10 @@ final class GildedRose
                         $item->quality = $item->quality - 1;
                     }
                 }
+                // brief says; "The Quality of an item is never more than 50". It doesn't specify which items.
+                if ($item->quality > 50) {
+                    $item->quality = 50;
+                }
             } else {
                 if ($item->quality < 50) {
                     $item->quality = $item->quality + 1;
