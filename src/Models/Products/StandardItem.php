@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace GildedRose\Models\Products;
 
+/**
+ * Once the sell by date has passed, Quality degrades twice as fast
+ * The Quality of an item is never negative
+ * The Quality of an item is never more than 50
+ */
 class StandardItem extends AbstractItem
 {
     protected function updateQuality(): void

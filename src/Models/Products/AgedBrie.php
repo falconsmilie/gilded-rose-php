@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace GildedRose\Models\Products;
 
+/**
+ * "Aged Brie" actually increases in Quality the older it gets
+ * The Quality of an item is never more than 50
+ */
 class AgedBrie extends AbstractItem
 {
     public function updateQuality(): void

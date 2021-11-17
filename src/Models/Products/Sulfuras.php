@@ -2,10 +2,14 @@
 
 namespace GildedRose\Models\Products;
 
+/**
+ * "Sulfuras", being a legendary item, never has to be sold or decreases in Quality
+ */
 class Sulfuras extends AbstractItem
 {
     protected const QUALITY_DEGRADE_AMOUNT = 0;
     protected const MAX_QUALITY = 80;
+    private const SELL_IN_DEFAULT = 100;
 
     public function updateQuality(): void
     {
@@ -14,6 +18,6 @@ class Sulfuras extends AbstractItem
 
     public function updateSellIn(): void
     {
-        $this->quality -= self::QUALITY_DEGRADE_AMOUNT;
+        $this->sellIn = self::SELL_IN_DEFAULT;
     }
 }
