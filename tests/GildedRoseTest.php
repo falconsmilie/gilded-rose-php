@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests;
 
+use GildedRose\Factories\ItemFactory;
 use GildedRose\GildedRose;
 use GildedRose\Item;
 use PHPUnit\Framework\TestCase;
@@ -14,28 +15,28 @@ class GildedRoseTest extends TestCase
     {
         // $type, $item, $expectedSellIn, $expectedQuality
         return [
-            [[new Item('+5 Dexterity Vest', 10, 20)], 9, 19],
-            [[new Item('+5 Dexterity Vest', 0, 20)], -1, 18],
-            [[new Item('Aged Brie', 2, 2)], 1, 3],
-            [[new Item('Aged Brie', -2, 2)], -3, 4],
-            [[new Item('Elixir of the Mongoose', 5, 7)], 4, 6],
-            [[new Item('Elixir of the Mongoose', -5, 7)], -6, 5],
-            [[new Item('Elixir of the Mongoose', 5, 80)], 4, 50],
-            [[new Item('Sulfuras, Hand of Ragnaros', 2, 80)], 100, 80],
-            [[new Item('Sulfuras, Hand of Ragnaros', -2, 80)], 100, 80],
-            [[new Item('Sulfuras, Hand of Ragnaros', 2, 20)], 100, 80],
-            [[new Item('Sulfuras, Hand of Ragnaros', -2, 20)], 100, 80],
-            [[new Item('Backstage passes to a TAFKAL80ETC concert', 15, 20)], 14, 21],
-            [[new Item('Backstage passes to a TAFKAL80ETC concert', 0, 20)], -1, 0],
-            [[new Item('Backstage passes to a TAFKAL80ETC concert', -10, 50)], -11, 0],
-            [[new Item('Backstage passes to a TAFKAL80ETC concert', -10, 150)], -11, 0],
-            [[new Item('Backstage passes to a TAFKAL80ETC concert', 10, 48)], 9, 50],
-            [[new Item('Backstage passes to a TAFKAL80ETC concert', 10, 49)], 9, 50],
-            [[new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49)], 4, 50],
-            [[new Item('Backstage passes to a TAFKAL80ETC concert', 5, 47)], 4, 50],
-            [[new Item('Conjured', 5, 47)], 4, 45],
-            [[new Item('Conjured', 5, 80)], 4, 50],
-            [[new Item('Conjured', -5, 10)], -6, 6],
+            [[new Item(ItemFactory::PLUS_5_DEXTERITY_VEST, 10, 20)], 9, 19],
+            [[new Item(ItemFactory::PLUS_5_DEXTERITY_VEST, 0, 20)], -1, 18],
+            [[new Item(ItemFactory::AGED_BRIE, 2, 2)], 1, 3],
+            [[new Item(ItemFactory::AGED_BRIE, -2, 2)], -3, 4],
+            [[new Item(ItemFactory::ELIXIR_OF_MONGOOSE, 5, 7)], 4, 6],
+            [[new Item(ItemFactory::ELIXIR_OF_MONGOOSE, -5, 7)], -6, 5],
+            [[new Item(ItemFactory::ELIXIR_OF_MONGOOSE, 5, 80)], 4, 50],
+            [[new Item(ItemFactory::SULFURAS, 2, 80)], 100, 80],
+            [[new Item(ItemFactory::SULFURAS, -2, 80)], 100, 80],
+            [[new Item(ItemFactory::SULFURAS, 2, 20)], 100, 80],
+            [[new Item(ItemFactory::SULFURAS, -2, 20)], 100, 80],
+            [[new Item(ItemFactory::BACKSTAGE_PASS, 15, 20)], 14, 21],
+            [[new Item(ItemFactory::BACKSTAGE_PASS, 0, 20)], -1, 0],
+            [[new Item(ItemFactory::BACKSTAGE_PASS, -10, 50)], -11, 0],
+            [[new Item(ItemFactory::BACKSTAGE_PASS, -10, 150)], -11, 0],
+            [[new Item(ItemFactory::BACKSTAGE_PASS, 10, 48)], 9, 50],
+            [[new Item(ItemFactory::BACKSTAGE_PASS, 10, 49)], 9, 50],
+            [[new Item(ItemFactory::BACKSTAGE_PASS, 5, 49)], 4, 50],
+            [[new Item(ItemFactory::BACKSTAGE_PASS, 5, 47)], 4, 50],
+            [[new Item(ItemFactory::CONJURED_MANA_CAKE, 5, 47)], 4, 45],
+            [[new Item(ItemFactory::CONJURED_MANA_CAKE, 5, 80)], 4, 50],
+            [[new Item(ItemFactory::CONJURED_MANA_CAKE, -5, 10)], -6, 6],
         ];
     }
 
