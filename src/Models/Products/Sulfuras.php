@@ -4,15 +4,16 @@ namespace GildedRose\Models\Products;
 
 class Sulfuras extends AbstractItem
 {
+    protected const QUALITY_DEGRADE_AMOUNT = 0;
+    protected const MAX_QUALITY = 80;
+
     public function updateQuality(): void
     {
-        // TODO: Implement updateQuality() method.
-        return;
+        $this->quality = self::MAX_QUALITY;
     }
 
     public function updateSellIn(): void
     {
-        // TODO: Implement updateSellIn() method.
-        return;
+        $this->quality -= self::QUALITY_DEGRADE_AMOUNT;
     }
 }

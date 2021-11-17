@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace GildedRose;
 
+use GildedRose\Factories\ItemFactory;
 use GildedRose\Models\Products\AbstractItem;
 
 final class GildedRose
@@ -11,11 +12,11 @@ final class GildedRose
     /**
      * @var AbstractItem[]
      */
-    private $items;
+    private array $items;
 
     public function __construct(array $items)
     {
-        $this->items = $items;
+        $this->items = $this->createItems($items);
     }
 
     public function updateQuality(): void
@@ -23,5 +24,19 @@ final class GildedRose
         foreach ($this->items as $item) {
             $item->dailyUpdate();
         }
+    }
+
+    private function createItems(array $items): array
+    {
+        foreach ($items as &$item) {
+            $item = ItemFactory::create($item);
+        }
+
+        return $items;
+    }
+
+    public function getItems(): array
+    {
+        return $this->items;
     }
 }

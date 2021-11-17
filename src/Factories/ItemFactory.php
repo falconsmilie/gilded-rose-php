@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace GildedRose\Factories;
 
 use GildedRose\Item;
