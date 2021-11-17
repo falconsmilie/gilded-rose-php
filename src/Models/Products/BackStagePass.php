@@ -13,7 +13,7 @@ namespace GildedRose\Models\Products;
  */
 class BackStagePass extends AbstractItem
 {
-    public function updateQuality(): void
+    protected function updateQuality(): void
     {
         if ($this->sellIn - 1 <= 0) {
             $this->quality = 0;
@@ -35,7 +35,7 @@ class BackStagePass extends AbstractItem
         }
     }
 
-    public function updateSellIn(): void
+    protected function updateSellIn(): void
     {
         $this->sellIn -= 1;
     }

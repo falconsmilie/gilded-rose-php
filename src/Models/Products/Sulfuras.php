@@ -11,12 +11,12 @@ class Sulfuras extends AbstractItem
     protected const MAX_QUALITY = 80;
     private const SELL_IN_DEFAULT = 100;
 
-    public function updateQuality(): void
+    protected function updateQuality(): void
     {
         $this->quality = self::MAX_QUALITY;
     }
 
-    public function updateSellIn(): void
+    protected function updateSellIn(): void
     {
         $this->sellIn = self::SELL_IN_DEFAULT;
     }

@@ -10,14 +10,14 @@ namespace GildedRose\Models\Products;
  */
 class AgedBrie extends AbstractItem
 {
-    public function updateQuality(): void
+    protected function updateQuality(): void
     {
         if ($this->quality < self::MAX_QUALITY) {
             $this->quality += 1;
         }
     }
 
-    public function updateSellIn(): void
+    protected function updateSellIn(): void
     {
         $this->sellIn -= 1;
 

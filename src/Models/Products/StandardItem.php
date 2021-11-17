@@ -22,7 +22,7 @@ class StandardItem extends AbstractItem
         }
     }
 
-    public function updateSellIn(): void
+    protected function updateSellIn(): void
     {
         $this->sellIn -= 1;
 

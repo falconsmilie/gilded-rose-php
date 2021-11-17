@@ -11,7 +11,7 @@ class Conjured extends AbstractItem
 {
     protected const QUALITY_DEGRADE_AMOUNT = 2;
 
-    public function updateQuality(): void
+    protected function updateQuality(): void
     {
         if ($this->quality > 1) {
             $this->quality -= self::QUALITY_DEGRADE_AMOUNT;
@@ -22,7 +22,7 @@ class Conjured extends AbstractItem
         }
     }
 
-    public function updateSellIn(): void
+    protected function updateSellIn(): void
     {
         $this->sellIn -= 1;
 
