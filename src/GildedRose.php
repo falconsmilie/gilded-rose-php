@@ -26,6 +26,11 @@ final class GildedRose
         }
     }
 
+    public function getItems(): array
+    {
+        return $this->items;
+    }
+
     private function createItems(array $items): array
     {
         foreach ($items as &$item) {
@@ -33,10 +38,5 @@ final class GildedRose
         }
 
         return $items;
-    }
-
-    public function getItems(): array
-    {
-        return $this->items;
     }
 }

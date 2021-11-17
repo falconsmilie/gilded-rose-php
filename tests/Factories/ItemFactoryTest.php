@@ -35,6 +35,7 @@ class ItemFactoryTest extends TestCase
      */
     public function testCreateItem(Item $item, string $expectedInstance): void
     {
+        // PHP Stan really struggling with passing a string here :/
         $this->assertInstanceOf($expectedInstance, ItemFactory::create($item));
     }
 

@@ -13,7 +13,7 @@ class GildedRoseTest extends TestCase
 {
     public function updateQualityDataProvider(): array
     {
-        // $type, $item, $expectedSellIn, $expectedQuality
+        // $item, $expectedSellIn, $expectedQuality
         return [
             [[new Item(ItemFactory::PLUS_5_DEXTERITY_VEST, 10, 20)], 9, 19],
             [[new Item(ItemFactory::PLUS_5_DEXTERITY_VEST, 0, 20)], -1, 18],
