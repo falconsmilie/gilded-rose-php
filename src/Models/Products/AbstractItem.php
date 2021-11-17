@@ -13,7 +13,8 @@ abstract class AbstractItem
 
     protected int $quality;
     protected int $sellIn;
-    protected string $name;
+
+    private string $name;
 
     public function __construct(Item $item)
     {
