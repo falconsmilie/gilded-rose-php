@@ -1,5 +1,7 @@
 # GildedRose Kata - PHP Version
 
+This repo is a proposed solution for the Gilded Rose kata. Credit to https://github.com/emilybache/GildedRose-Refactoring-Kata for hosting and maintaining the code this repo was built from.
+
 See the [top level readme](../README.md) for general information about this exercise. This is the PHP version of the
 GildedRose Kata.
 
